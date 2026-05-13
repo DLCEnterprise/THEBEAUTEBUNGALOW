@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body text-charcoal antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display;
+  }
+  ::selection {
+    background-color: #C9A882;
+    color: white;
+  }
+}
+
+@layer utilities {
+  .text-rg-gradient {
+    background: linear-gradient(135deg, #D4B896 0%, #E8D5C4 45%, #C9A882 70%, #A6784E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .overline-label {
+    font-family: var(--font-jost), system-ui, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #B8926A;
+  }
+
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #D4B896;
+    opacity: 0.6;
+  }
+}
