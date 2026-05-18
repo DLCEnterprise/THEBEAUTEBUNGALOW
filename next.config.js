@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
-const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 const nextConfig = {
   output: 'export',
-  basePath: isGitHubActions ? '/THEBEAUTEBUNGALOW' : '',
-  assetPrefix: isGitHubActions ? '/THEBEAUTEBUNGALOW/' : '',
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : '',
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './src/lib/imageLoader.ts',
   },
 }
 
