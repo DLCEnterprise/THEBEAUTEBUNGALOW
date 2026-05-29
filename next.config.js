@@ -5,6 +5,7 @@ const nextConfig = {
   output: 'export',
   basePath,
   assetPrefix: basePath ? `${basePath}/` : '',
+  trailingSlash: true,
   images: {
     loader: 'custom',
     loaderFile: './src/lib/imageLoader.ts',
