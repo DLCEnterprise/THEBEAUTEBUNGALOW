@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Ornament from '@/components/Ornament'
 
 const pillars = [
   {
@@ -36,6 +37,7 @@ export default function About() {
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 65% 55% at 50% 30%, #2b1a0e 0%, #111111 75%)' }}
         />
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.06] mix-blend-soft-light pointer-events-none" />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/50 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/25 to-transparent" />
 
@@ -45,11 +47,7 @@ export default function About() {
             Where Science<br />
             <span className="italic text-rg-gradient">Meets Elegance</span>
           </h1>
-          <div className="flex items-center gap-4 w-40 mt-2">
-            <div className="flex-1 h-px bg-rg-400/38" />
-            <span className="text-rg-400/65 text-xs">♥</span>
-            <div className="flex-1 h-px bg-rg-400/38" />
-          </div>
+          <Ornament width="w-14" className="mt-2" />
           <p className="font-body text-[13px] text-white/47 leading-relaxed max-w-md">
             Born from a passion for precision beauty and an unwavering commitment to transformative results.
           </p>
@@ -170,8 +168,14 @@ export default function About() {
       {/* ══════════════════════════════════════════════
           CREDENTIALS
       ══════════════════════════════════════════════ */}
-      <section className="bg-charcoal py-28 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative bg-charcoal py-28 px-6 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.05] mix-blend-soft-light pointer-events-none" />
+        <div
+          aria-hidden
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-64 blur-3xl opacity-40 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center, rgba(166,120,78,0.14) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <p className="font-body text-[10px] tracking-[0.35em] uppercase text-rg-400 mb-3">Trust &amp; Expertise</p>
           <h2 className="font-display text-4xl text-white font-light mb-14">Certifications &amp; Credentials</h2>
 

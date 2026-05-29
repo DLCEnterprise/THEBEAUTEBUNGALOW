@@ -39,12 +39,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="relative w-11 h-11 flex-shrink-0">
+        <Link href="/" className="relative w-11 h-11 flex-shrink-0 group">
           <Image
-            src={lightNav ? '/logo-light.jpg' : '/logo-dark.jpg'}
+            src={lightNav ? '/logo-emblem-light.png' : '/logo-emblem-dark.png'}
             alt="The Beaute Bungalow"
             fill
-            className="object-contain transition-opacity duration-500"
+            className="object-contain transition-all duration-500 group-hover:scale-[1.06]"
             priority
           />
         </Link>

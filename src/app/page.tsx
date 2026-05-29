@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Ornament from '@/components/Ornament'
 
 const services = [
   {
@@ -67,6 +68,31 @@ export default function Home() {
           style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 40%, #2b1a0e 0%, #111111 75%)' }}
         />
 
+        {/* Ambient corner glows */}
+        <div
+          aria-hidden
+          className="absolute -top-24 -left-24 w-96 h-96 rounded-full blur-3xl opacity-50 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(166,120,78,0.20) 0%, transparent 70%)' }}
+        />
+        <div
+          aria-hidden
+          className="absolute -bottom-32 -right-24 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-40 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(201,168,130,0.16) 0%, transparent 70%)' }}
+        />
+
+        {/* Film grain */}
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.06] mix-blend-soft-light pointer-events-none" />
+
+        {/* Floating sparkles */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
+          <span className="absolute top-[18%] left-[14%] w-1 h-1 rounded-full bg-rg-300/40 blur-[0.5px] animate-float-slow" />
+          <span className="absolute top-[26%] right-[16%] w-[3px] h-[3px] rounded-full bg-rg-200/30 blur-[0.5px] animate-float-slow [animation-delay:1.5s]" />
+          <span className="absolute bottom-[24%] left-[22%] w-[2px] h-[2px] rounded-full bg-rg-300/30 animate-float-slow [animation-delay:3s]" />
+          <span className="absolute bottom-[30%] right-[24%] w-1 h-1 rounded-full bg-rg-400/30 blur-[0.5px] animate-float-slow [animation-delay:4.5s]" />
+          <span className="absolute top-[44%] left-[9%] w-[2px] h-[2px] rounded-full bg-rg-200/25 animate-float-slow [animation-delay:2.2s]" />
+          <span className="absolute top-[38%] right-[10%] w-1 h-1 rounded-full bg-rg-300/25 blur-[0.5px] animate-float-slow [animation-delay:5.5s]" />
+        </div>
+
         {/* Top / bottom shimmer lines */}
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/50 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/30 to-transparent" />
@@ -78,29 +104,48 @@ export default function Home() {
             Luxury Face &amp; Body Contouring
           </p>
 
-          {/* Logo */}
-          <div className="relative w-44 h-64 md:w-52 md:h-72">
-            <Image
-              src="/logo-dark.jpg"
-              alt="The Beaute Bungalow"
-              fill
-              className="object-contain"
-              priority
+          {/* Logo emblem — floats on the background with a soft glow halo */}
+          <div className="relative flex items-center justify-center w-60 h-60 md:w-72 md:h-72">
+
+            {/* Glow halo */}
+            <div
+              aria-hidden
+              className="absolute inset-0 rounded-full blur-2xl animate-glow-pulse motion-reduce:animate-none"
+              style={{ background: 'radial-gradient(circle, rgba(201,168,130,0.42) 0%, rgba(166,120,78,0.12) 45%, transparent 70%)' }}
             />
+
+            {/* Concentric rings */}
+            <div aria-hidden className="absolute inset-1 rounded-full border border-rg-400/15" />
+            <div aria-hidden className="absolute inset-[18px] rounded-full border border-rg-300/10" />
+
+            {/* Orbiting accents */}
+            <div aria-hidden className="absolute inset-0 animate-spin-slow motion-reduce:animate-none">
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-rg-300/70 blur-[0.5px]" />
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-rg-400/50" />
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-rg-300/45" />
+              <span className="absolute right-1 top-1/2 -translate-y-1/2 w-[3px] h-[3px] rounded-full bg-rg-200/40" />
+            </div>
+
+            {/* Emblem */}
+            <div className="relative w-44 h-44 md:w-52 md:h-52 drop-shadow-[0_2px_20px_rgba(201,168,130,0.22)]">
+              <Image
+                src="/logo-emblem-dark.png"
+                alt="The Beaute Bungalow"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
 
           {/* Ornament */}
-          <div className="flex items-center gap-4 w-44">
-            <div className="flex-1 h-px bg-rg-400/40" />
-            <span className="text-rg-400/70 text-[10px]">♥</span>
-            <div className="flex-1 h-px bg-rg-400/40" />
-          </div>
+          <Ornament width="w-16" className="mt-1" />
 
           {/* Headline */}
           <h1 className="font-display text-5xl md:text-7xl text-white font-light leading-tight">
             Sculpt.{' '}
             <em className="not-italic italic">Refine.</em>{' '}
-            <span className="text-rg-gradient">Radiate.</span>
+            <span className="text-rg-shimmer animate-shimmer">Radiate.</span>
           </h1>
 
           {/* Sub */}
@@ -245,17 +290,19 @@ export default function Home() {
       {/* ══════════════════════════════════════════════
           BEFORE & AFTER
       ══════════════════════════════════════════════ */}
-      <section className="bg-charcoal py-28 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative bg-charcoal py-28 px-6 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.05] mix-blend-soft-light pointer-events-none" />
+        <div
+          aria-hidden
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-72 blur-3xl opacity-40 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center, rgba(166,120,78,0.16) 0%, transparent 70%)' }}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto">
 
           <div className="text-center mb-16">
             <p className="font-body text-[10px] tracking-[0.35em] uppercase text-rg-400 mb-3">Real Results</p>
             <h2 className="font-display text-4xl md:text-5xl text-white font-light">Client Transformations</h2>
-            <div className="flex items-center gap-4 max-w-[180px] mx-auto mt-6">
-              <div className="flex-1 h-px bg-rg-400/35" />
-              <span className="text-rg-400/60 text-xs">♥</span>
-              <div className="flex-1 h-px bg-rg-400/35" />
-            </div>
+            <Ornament width="w-16" className="mt-6" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -312,17 +359,29 @@ export default function Home() {
       {/* ══════════════════════════════════════════════
           CTA BANNER
       ══════════════════════════════════════════════ */}
-      <section className="bg-charcoal py-32 px-6 text-center">
-        <div className="max-w-xl mx-auto flex flex-col items-center gap-7">
+      <section className="relative bg-charcoal py-32 px-6 text-center overflow-hidden">
+
+        {/* Ghosted emblem watermark */}
+        <div aria-hidden className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="relative w-[26rem] h-[26rem] opacity-[0.04]">
+            <Image src="/logo-emblem-dark.png" alt="" fill className="object-contain" />
+          </div>
+        </div>
+
+        {/* Grain + ambient glow */}
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.05] mix-blend-soft-light pointer-events-none" />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-64 blur-3xl opacity-50 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center, rgba(201,168,130,0.14) 0%, transparent 70%)' }}
+        />
+
+        <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center gap-7">
           <p className="font-body text-[10px] tracking-[0.4em] uppercase text-rg-400">Begin Your Journey</p>
           <h2 className="font-display text-4xl md:text-6xl text-white font-light leading-tight">
             Begin Your<br />Transformation
           </h2>
-          <div className="flex items-center gap-5 w-44">
-            <div className="flex-1 h-px bg-rg-400/38" />
-            <span className="text-rg-400/65 text-[10px]">♥</span>
-            <div className="flex-1 h-px bg-rg-400/38" />
-          </div>
+          <Ornament width="w-16" />
           <p className="font-body text-[13px] text-white/42 leading-relaxed max-w-sm">
             Every body is unique. Every treatment is personal. Begin your journey to your most
             confident, sculpted self.

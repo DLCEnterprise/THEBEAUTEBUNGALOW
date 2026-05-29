@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Ornament from '@/components/Ornament'
 
 const services = [
   {
@@ -99,17 +100,14 @@ export default function Services() {
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 65% 55% at 50% 30%, #2b1a0e 0%, #111111 75%)' }}
         />
+        <div aria-hidden className="absolute inset-0 bg-grain opacity-[0.06] mix-blend-soft-light pointer-events-none" />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/50 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rg-400/25 to-transparent" />
 
         <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-5">
           <p className="font-body text-[10px] tracking-[0.4em] uppercase text-rg-400">What We Offer</p>
           <h1 className="font-display text-5xl md:text-7xl text-white font-light">Our Treatments</h1>
-          <div className="flex items-center gap-4 w-40 mt-1">
-            <div className="flex-1 h-px bg-rg-400/38" />
-            <span className="text-rg-400/65 text-xs">♥</span>
-            <div className="flex-1 h-px bg-rg-400/38" />
-          </div>
+          <Ornament width="w-14" className="mt-1" />
           <p className="font-body text-[13px] text-white/47 leading-relaxed max-w-md">
             Every treatment at The Beaute Bungalow is a precision-crafted experience designed to
             reveal your most sculpted, radiant self.

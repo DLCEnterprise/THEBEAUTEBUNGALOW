@@ -11,8 +11,13 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col gap-5">
-            <div className="relative w-14 h-14">
-              <Image src="/logo-dark.jpg" alt="The Beaute Bungalow" fill className="object-contain" />
+            <div className="relative w-16 h-16">
+              <div
+                aria-hidden
+                className="absolute -inset-2 rounded-full blur-xl"
+                style={{ background: 'radial-gradient(circle, rgba(201,168,130,0.22) 0%, transparent 70%)' }}
+              />
+              <Image src="/logo-emblem-dark.png" alt="The Beaute Bungalow" fill className="relative object-contain" />
             </div>
             <p className="font-body text-[13px] text-white/45 leading-relaxed max-w-[190px]">
               Luxury face &amp; body contouring for women who demand the very best.
