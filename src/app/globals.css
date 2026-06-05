@@ -23,6 +23,32 @@
     background-clip: text;
   }
 
+  /* Deeper rose-gold gradient — legible metallic text on white.
+     Anchored in rg-700/rg-600 (lightest point is rg-500 #B8926A ≈3.8:1
+     on white) so the headline reads clearly while keeping a metallic
+     sweep. (Separate from .text-rg-gradient, which the About page shares.) */
+  .text-rg-gradient-deep {
+    background: linear-gradient(135deg, #6E4A2E 0%, #8A6040 35%, #A6784E 50%, #8A6040 65%, #6E4A2E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Deep-anchored metallic sheen — a light glint travels across the
+     glyphs (pair with animate-shimmer) while the resolved letters stay
+     legibly deep rose-gold at every frame. For the headline on white. */
+  .text-rg-shimmer-deep {
+    background: linear-gradient(
+      110deg,
+      #6E4A2E 0%, #8A6040 24%, #A6784E 42%,
+      #D4B896 50%, #A6784E 58%, #8A6040 76%, #6E4A2E 100%
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   /* Animated metallic sheen that sweeps across the text */
   .text-rg-shimmer {
     background: linear-gradient(

@@ -31,6 +31,8 @@ module.exports = {
         'shimmer':    'shimmer 7s ease-in-out infinite',
         'float-slow': 'floatY 9s ease-in-out infinite',
         'glow-pulse': 'glowPulse 6s ease-in-out infinite',
+        'shadow-breathe': 'shadowBreathe 9s ease-in-out infinite',
+        'float-emblem': 'floatEmblem 5.5s ease-in-out infinite',
         'spin-slow':  'spinSlow 70s linear infinite',
         'spin-slower':'spinSlow 110s linear infinite reverse',
       },
@@ -54,6 +56,20 @@ module.exports = {
         glowPulse: {
           '0%, 100%': { opacity: '0.40', transform: 'scale(1)' },
           '50%':      { opacity: '0.72', transform: 'scale(1.06)' },
+        },
+        /* Floor contact-shadow gently expands + softens so the emblem
+           reads as slowly floating. translateX(-50%) is baked in so the
+           keyframe is self-contained for an element centered via left-1/2. */
+        shadowBreathe: {
+          '0%, 100%': { opacity: '0.50', transform: 'translateX(-50%) scaleX(1)' },
+          '50%':      { opacity: '0.30', transform: 'translateX(-50%) scaleX(1.12)' },
+        },
+        /* Gentle vertical bob for the emblem — translateY only (no opacity),
+           so the centerpiece never flickers. Pairs with the breathing floor
+           shadow to sell a slow, luxurious float. */
+        floatEmblem: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%':      { transform: 'translateY(-18px)' },
         },
         spinSlow: {
           from: { transform: 'rotate(0deg)' },

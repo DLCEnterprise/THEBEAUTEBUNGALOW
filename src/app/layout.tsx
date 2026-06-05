@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import PageTransition from '@/components/PageTransition'
+// Chrome hidden while the site is in "Coming Soon" mode — restore these
+// (and the JSX below) to bring back the full marketing site:
+// import Navbar from '@/components/Navbar'
+// import Footer from '@/components/Footer'
+// import PageTransition from '@/components/PageTransition'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -21,12 +23,12 @@ const jost = Jost({
 })
 
 export const metadata: Metadata = {
-  title: 'The Beaute Bungalow | Luxury Face & Body Contouring',
+  title: 'The Beaute Bungalow | Coming Soon — Grapevine, TX',
   description:
-    'Expert non-invasive face and body contouring treatments. Where beauty is elevated to an art form.',
+    'The Beaute Bungalow is coming soon to Grapevine, Texas — luxury non-invasive face & body contouring. Contact us in the meantime.',
   openGraph: {
-    title: 'The Beaute Bungalow',
-    description: 'Luxury face & body contouring studio.',
+    title: 'The Beaute Bungalow | Coming Soon',
+    description: 'The future home of The Beaute Bungalow — Grapevine, TX.',
     siteName: 'The Beaute Bungalow',
   },
 }
@@ -35,9 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="overflow-x-hidden">
-        <Navbar />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
+        {children}
       </body>
     </html>
   )
