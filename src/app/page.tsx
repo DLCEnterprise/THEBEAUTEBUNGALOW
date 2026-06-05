@@ -101,9 +101,13 @@ export default function ComingSoon() {
           </span>
         </h1>
 
-        {/* Status / location line */}
-        <p className="font-body text-[10px] tracking-[0.4em] uppercase text-charcoal/65">
-          Under Construction &nbsp;·&nbsp; Grapevine, Texas
+        {/* Status / location line — stacks into two centered lines on
+            mobile (no awkward mid-phrase wrap / clipping); single line with
+            a dot separator on larger screens */}
+        <p className="font-body text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-charcoal/65 leading-relaxed">
+          <span className="whitespace-nowrap">Under Construction</span>
+          <span aria-hidden className="hidden sm:inline">&nbsp;·&nbsp;</span>
+          <span className="block sm:inline whitespace-nowrap">Grapevine, Texas</span>
         </p>
 
         {/* Contact */}
