@@ -1,0 +1,60 @@
+name: Deploy to Bluehost (FTP)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: bluehost-ftp
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify FTP secrets are set
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "::error::FTP secrets are not set yet."
+            echo "Add these three secrets under: Repo -> Settings -> Secrets and variables -> Actions -> New repository secret"
+            echo "  FTP_SERVER    (e.g. ftp.yourdomain.com, or the FTP host shown in cPanel)"
+            echo "  FTP_USERNAME  (the full FTP username from cPanel)"
+            echo "  FTP_PASSWORD  (the FTP account password)"
+            echo "Optional: FTP_SERVER_DIR (defaults to /public_html/)"
+            echo "Then re-run: Actions -> Deploy to Bluehost (FTP) -> Run workflow."
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (root path for the domain root — no basePath)
+        run: npm run build
+
+      - name: Add Apache .htaccess to the build
+        run: cp bluehost/.htaccess out/.htaccess
+
+      - name: Deploy to Bluehost via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Explicit FTPS (encrypted). If the run fails with a TLS/certificate
+          # error, change this to: ftp  (plain) — and prefer a dedicated FTP account.
+          protocol: ftps
+          local-dir: ./out/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || '/public_html/' }}
+          # Only uploads changed files; does NOT delete your other public_html files.
